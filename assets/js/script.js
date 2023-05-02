@@ -1,78 +1,52 @@
-let jsonData;
-let cityName;
-
 const apiKey = "8eac768920bc228ecc692f30b2371da9"
-let weatherAPI;
 
-let searchButton = document.getElementById("searchBtn");
-    searchButton.addEventListener("click", function () {
-        cityName = $("#cityInput").val();
-        weatherAPI =  "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=" + apiKey;
-
-        console.log(cityName);
-
+var searchButton = document.getElementById("searchBtn");
+searchButton.addEventListener("click", function () {
+    console.log("search button clicked");
+    let cityName = $("#cityInput").val();
+    console.log(cityName);
+    let weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=" + apiKey;
     fetch(weatherAPI)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            if (data.cod === "404") {
-                console.log("City not found...");
-                    
+            if (data.cod !== "200") {
+                console.log("City not found. Please try again");
                 return;
-            
             }
-
-            let responseContainerEl = document.querySelector("#res-container");
-                console.log(data)
-
+            // Use 'querySelector' to get the ID of where the Search for a City will be displayed
+            var responseContainerEl = document.querySelector("#response-container");
+            console.log(data)
         })
         .catch(err => console.log(err));
-
 })
 
-// make the preset city buttons act like search button
-let presetCityButtons = document.querySelectorAll(".cityNames");
+// get the preset buttons to return weather information
+var presetCityButtons = document.querySelectorAll(".cityNames");
 presetCityButtons.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
         console.log(document.querySelectorAll(".cityNames"));
-        let cityName = $("#cityInput").val();
-        let cityNames = e.target.innerText;
-  
+        let cityName = e.target.innerText;
         console.log(cityName);
-
-    weatherAPI =  "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=" + apiKey;
-
-    
-
-fetch(cityName)
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        if (data.cod === "404") {
-            console.log("City not found...");
-                
-            return;
-        
-        }
-
-        let responseContainerEl = document.querySelector("#res-container");
-            console.log(data)
-
-    })
-        .catch(err => console.log(err));
-
+        let weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=" + apiKey;
+        fetch(weatherAPI)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                if (data.cod !== "200") {
+                    console.log("City not found. Please try again");
+                    return;
+                }
+                // Use 'querySelector' to get the ID of where the Search for a City will be displayed
+                var responseContainerEl = document.querySelector("#response-container");
+                console.log(data)
+            })
+            .catch(err => console.log(err));
     });
-
 });
 
-// container for city and data
 
-$(document).ready(function () {
-    weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=" + apiKey;
-    $.getJSON(weatherAPI, function (data){
-            jsonData = data;
-            $(".cityDate").text(jsonData.name);
-        });
-});
+// still need to create a container that contains the city, date, temp, wind, humidity and UV index
+var jsonData;
