@@ -1,3 +1,4 @@
+let jsonData;
 let cityName;
 
 const apiKey = "8eac768920bc228ecc692f30b2371da9"
@@ -35,7 +36,8 @@ let presetCityButtons = document.querySelectorAll(".cityNames");
 presetCityButtons.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
         console.log(document.querySelectorAll(".cityNames"));
-        let cityName = e.target.innerText;
+        let cityName = $("#cityInput").val();
+        let cityNames = e.target.innerText;
   
         console.log(cityName);
 
@@ -43,7 +45,7 @@ presetCityButtons.forEach(function (btn) {
 
     
 
-fetch(weatherAPI)
+fetch(cityName)
     .then(function (response) {
         return response.json();
     })
@@ -63,4 +65,14 @@ fetch(weatherAPI)
 
     });
 
+});
+
+// container for city and data
+
+$(document).ready(function () {
+    weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=" + apiKey;
+    $.getJSON(weatherAPI, function (data){
+            jsonData = data;
+            $(".cityDate").text(jsonData.name);
+        });
 });

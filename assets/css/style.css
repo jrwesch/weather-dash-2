@@ -30,5 +30,6 @@ header {
 }
 
 #presetCities {
-    
+    display: flex;
+    align-content: column;
 }
