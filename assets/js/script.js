@@ -1,12 +1,15 @@
-const apiKey = "8eac768920bc228ecc692f30b2371da9";
 let cityName;
+const apiKey = "8eac768920bc228ecc692f30b2371da9";
+let saveHistory = [];
 
 
 
     let fetchWeather = function (cityName) {
-    let weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=" + apiKey;
+    //let weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=8eac768920bc228ecc692f30b2371da9";
+        const weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=8eac768920bc228ecc692f30b2371da9";
     fetch(weatherAPI)
         .then(function (response) {
+            console.log(weatherAPI);
             return response.json();
         })
         .then(function (data) {
@@ -15,7 +18,7 @@ let cityName;
                 return;
             }
             // Use 'querySelector' to get the ID of where the Search for a City will be displayed
-            var responseContainerEl = document.querySelector("#response-container");
+            var responseContainerEl = document.querySelector("#res-container");
             console.log(data)
             getCityInfo(data.city.coor.lat, data.city.coord.lon);
         })
@@ -24,9 +27,9 @@ let cityName;
 
     var searchButton = document.getElementById("searchBtn");
     searchButton.addEventListener("click", function () {
-        cityName = $("#cityInput").val();
+        const cityName = $("#cityInput").val();
         fetchWeather(cityName);
-    })
+    });
 
 // get the preset buttons to return weather information
 var presetCityButtons = document.querySelectorAll(".cityNames");
@@ -46,12 +49,15 @@ presetCityButtons.forEach(function (btn) {
         .then(function (response) {
             return response.json();
         }).then(function (data) {
-            $('.cityDate').html(cityName + " (" + toDateTime(data.current.dt) + ")" + `<img src="https://openweathermap.org/img/w/${data.current.weather[0].icon}.png" />`); // in the city variable
+            console.log(data);
+            const date = dayjs.unix(data.current.dt).format("M/D/YYYY"); // convert unix timestamp to date
+            $('.cityDate').html(`${cityName} (${date}) <img src="https://openweathermap.org/img/w/${data.current.weather[0].icon}.png" />`); // in the city variable
             $('.temperature').text("Temp: " + data.current.temp);
             $('.wind').text("Wind: " + data.current.wind_speed + " MPH");
             $('.humidity').text("Humidity: " + data.current.humidity + " %");
             $('.uvIndex').html("UV Index: " + `<span class="btnColor">${data.current.uvi}</span>`);
             fiveDayForecast(data);
+          
 
           
     });
