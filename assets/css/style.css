@@ -9,24 +9,48 @@ header {
     justify-content: center;
 }
 
+.sidesearch {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
 #res-container {
+    margin-bottom: 15px;
 
 }
 
+#searchTitle {
+    font-size: 2em;
+    font-weight: bold;
+}
+
 #cityInput {
+    width: 300px;
 
 }
 
 #searchBtn {
+    width: 300px;
+    background-color: aqua;
+    color:brown;
 
 }
 
 .cityNames {
+    width: 300px;
 
 }
 
 .weatherbox {
+    border: 2px solid black;
+    line-height: 40px;
 
+}
+
+.fiveDayForecast {
+    display: flex;
+    flex-direction: row;
 }
 
 #presetCities {
