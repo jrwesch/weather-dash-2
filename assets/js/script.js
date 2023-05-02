@@ -29,3 +29,32 @@ let searchButton = document.getElementById("searchBtn");
         .catch(err => console.log(err));
 
 })
+
+// make the preset city buttons act like search button
+let presetCityButtons = document.querySelector(".cityNames");
+presetCityButtons.addEventListener("click", function (e) {
+    let cityName = e.target.innerText;
+
+    weatherAPI =  "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=" + apiKey;
+
+    console.log(cityName);
+
+fetch(weatherAPI)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        if (data.cod === "404") {
+            console.log("City not found...");
+                
+            return;
+        
+        }
+
+        let responseContainerEl = document.querySelector("#res-container");
+            console.log(data)
+
+    })
+    .catch(err => console.log(err));
+
+});

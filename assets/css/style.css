@@ -1,3 +1,14 @@
+* {
+    margin: 10px;
+    padding: 5px;
+
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
 #res-container {
 
 }
@@ -10,3 +21,10 @@
 
 }
 
+.cityNames {
+
+}
+
+.weatherbox {
+
+}

@@ -24,10 +24,27 @@
                 <input type="text" placeholder="Detroit" id="cityInput" name="cityInput">
                     <button id="searchBtn">Search</button>
             </div>
+                <!-- add some preset city buttons-->
+            <div id="preset-cities">
+                <button class="cityNames">Hartford</button>
+                <button class="cityNames">Hackensack</button>
+                <button class="cityNames">Sarnia</button>
+                <button class="cityNames">Blind River</button>
+
+            </div>
 
             <!-- need temp, wind, humidity, and UV-->
-            <div>
-
+            <div class="col-md-8 weatherbox">
+                <strong>{CITY AND DATE}</strong>
+            </br>
+                <span class="temperature">{X}</span>
+            </br>
+                <span class="wind">{WIND VALUE} MPH</span>
+            </br>
+                <span class="humidity">{HUMIDITY VALUE} %</span>
+            </br>
+                <span class="uvIndex">{UV INDEX VALUE}</span>
+                
             </div>
 
             <!-- forecast for 5 days -->
