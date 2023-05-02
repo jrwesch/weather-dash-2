@@ -12,12 +12,17 @@ header {
 .sidesearch {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    /* width: 300px; */
 }
 
 #res-container {
     margin-bottom: 15px;
 
+}
+
+.forecast {
+    display: flex;
+    justify-content: flex-end;
 }
 
 #searchTitle {
@@ -56,4 +61,9 @@ header {
 #presetCities {
     display: flex;
     align-content: column;
+}
+
+.day {
+    background-color: aliceblue;
+    color: blueviolet;
 }

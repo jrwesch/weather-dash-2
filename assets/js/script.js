@@ -59,12 +59,14 @@ presetCityButtons.forEach(function (btn) {
 
 // still need to create a container that contains the city, date, temp, wind, humidity and UV index
     let fiveDayForecast = function (data) {
+        $('.fiveDayForecast').empty();
         for (let i = 0; i < 5; i++) {
+            let day = $("<div class='day'><div />")
             console.log(fiveDayForecast);
-            $('.fiveDayForecast').append(fiveDayForecast[i]);
-            $('.dailyForecast').append("Temp: " + data.daily[i].temp);
-            $('.dailyForecast').append("Wind: " + data.daily[i].wind_speed + "MPH");
-            $('.dailyForecast').append("Humidity: " + data.daily[i].humidity + " %");
-            fiveDayForecast = "";
+           // $('.fiveDayForecast').append(fiveDayForecast[i]);
+            $(day).append("<p>Temp: " + data.daily[i].temp.day);
+            $(day).append("<p>Wind: " + data.daily[i].wind_speed + "MPH</p>");
+            $(day).append("<p>Humidity: " + data.daily[i].humidity + " %</p>");
+            $('fiveDayForecast').append(day)
         };
     }
