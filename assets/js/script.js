@@ -60,7 +60,8 @@ function addWeatherEventListener() {
             return dayjs(unixTimestamp * 1000).format('M/D/YYYY');
         }
         let getCityInfo = function (lat, lon) {
-            let uvAPI = "https://api.openweathermap.org/data/2.5/forecast?q=" + lat + '&lon=' + lon + "&APPID=e87a068abe5c917d5633f3c922dca1d9";
+            let uvAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + '&lon=' + lon + "&APPID=e87a068abe5c917d5633f3c922dca1d9";
+            console.log(uvAPI);
             fetch(uvAPI)
                 .then(function (response) {
                     return response.json();
