@@ -76,3 +76,51 @@ presetCityButtons.forEach(function (btn) {
             $('fiveDayForecast').append(day)
         };
     }
+
+    // save to local storage
+
+    function getItems() {
+        let storedCities = 
+            JSON.parse(localStorage.getItem("saveHistory"));
+        if (storedCities !== null) {
+            saveHistory = storedCities;
+        };
+        // display up to 10 locations
+        for (i =0; i < saveHistory.length; i++) {
+            if (i == 10) {
+                break;
+            }
+        // create link buttons
+        cityListButton = $("<a>").attr({ class: "list-group-item list-group-item-action", href: "#"});
+
+        //append history as button below search field
+        cityListButton.text(saveHistory[i]);
+        $(".list-group").append(cityListButton);
+        }
+    };
+
+    // searches and adds to history (event)
+    $("#searchCity").click(function () {
+        cityName = $("#city").val().trim();
+        getData();
+        let checkArray = saveHistory.includes(city);
+        if (checkArray == true) {
+            return
+        } else {
+            saveHistory.push(cityName);
+            localStorage.setItem("saveHistory", JSON.stringify(saveHistory));
+
+            let cityListButton = $("<a>").attr({
+                //list-group-item-action keeps teh search history buttons consistent
+                class: "list-group-item-action", href: "#"
+            });
+            cityListButton.text(cityName);
+            $(".list-group").append(cityListButton);
+        };
+    });
+
+    // listen for action on the history buttons (event)
+    $(".list-group-item").click(function () {
+        city = $(this).text();
+        getData();
+    });

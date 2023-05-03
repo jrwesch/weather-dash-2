@@ -9,20 +9,21 @@ header {
     justify-content: center;
 }
 
-.sidesearch {
+/* .row {
+    white-space: pre-wrap;
+} */
+
+/* .sidesearch {
     display: flex;
     flex-direction: column;
-    /* width: 300px; */
-}
+    /* width: 300px; 
+} */
 
-#res-container {
-    margin-bottom: 15px;
+#searchBtn {
+    width: 300px;
+    background-color: aqua;
+    color:brown;
 
-}
-
-.forecast {
-    display: flex;
-    justify-content: flex-end;
 }
 
 #searchTitle {
@@ -35,35 +36,47 @@ header {
 
 }
 
-#searchBtn {
-    width: 300px;
-    background-color: aqua;
-    color:brown;
-
-}
-
 .cityNames {
     width: 300px;
 
 }
 
-.weatherbox {
+/* .weatherbox {
     border: 2px solid black;
     line-height: 40px;
 
+} */
+
+.res-container {
+    margin-bottom: 15px;
+
 }
 
-.fiveDayForecast {
+/* .forecast {
+    display: flex;
+    justify-content: flex-end;
+} */
+
+/* .fiveDayForecast {
     display: flex;
     flex-direction: row;
-}
+} */
 
-#presetCities {
-    display: flex;
-    align-content: column;
+.card {
+    width: 100%;
 }
 
 .day {
     background-color: aliceblue;
     color: blueviolet;
 }
+
+
+/* .sidebar #presetCities {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+} */
+
+
+
