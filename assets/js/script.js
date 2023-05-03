@@ -18,11 +18,11 @@ for (let i = 0; i < storedCity.length; i++) {
             return response.json();
         })
         .then(function (data) {
-            if (data.cod !== "200") {
+            if (data.cod !== 200) {
                 console.log("City not found. Please try again");
                 return;
             }
-            getCityInfo(data.city.coor.lat, data.city.coord.lon);
+            getCityInfo(data.coord.lat, data.coord.lon);
         })
         .catch(err => console.log(err));
 };
@@ -56,14 +56,17 @@ function addWeatherEventListener() {
 
 
     // create container for city and all weather data
+        let formatDate = function(unixTimestamp) {
+            return dayjs(unixTimestamp * 1000).format('M/D/YYYY');
+        }
         let getCityInfo = function (lat, lon) {
-            let uvAPI = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + '&lon=' + lon + "&APPID=e87a068abe5c917d5633f3c922dca1d9";
+            let uvAPI = "https://api.openweathermap.org/data/2.5/forecast?q=" + lat + '&lon=' + lon + "&APPID=e87a068abe5c917d5633f3c922dca1d9";
             fetch(uvAPI)
                 .then(function (response) {
                     return response.json();
                 }).then(function (data) {
             console.log(data);
-            $('.cityDate').html(cityName + " (" + toDateTime(data.current.dt) + ")" + `<img src="https://openweathermap.org/img/w/${data.current.weather[0].icon}.png" />`); // in the city variable
+            $('.cityDate').html(cityName + " (" + formatDate(data.current.dt) + ")" + `<img src="https://openweathermap.org/img/w/${data.current.weather[0].icon}.png" />`); // in the city variable
             $('.temperature').text("Temp: " + data.current.temp + " °F");
             $('.wind').text("Wind: " + data.current.wind_speed + " MPH");
             $('.humidity').text("Humidity: " + data.current.humidity + " %");
@@ -87,6 +90,7 @@ function addWeatherEventListener() {
     let fiveDayForecast = function (data) {
         $('.fiveDayForecast').empty();
         for (let i = 1; i < 6; i++) {
+            console.log(data.daily[i]); //debug statement
             var day = $("<div class='day'><div />")
             $(day).append(toDateTime(data.daily[i].dt));
             $(day).append(`<img src="https://openweathermap.org/img/w/${data.daily[i].weather[0].icon}.png"/>`);
@@ -94,5 +98,6 @@ function addWeatherEventListener() {
             $(day).append("<p>Wind: " + data.daily[i].wind_speed + " MPH</p>");
             $(day).append("<p>Humidity: " + data.daily[i].humidity + " %</p>");
             $('.fiveDayForecast').append(day)
+            
         };
     }
