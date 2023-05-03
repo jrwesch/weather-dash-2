@@ -7,68 +7,61 @@
     <script src="https://cdn.jsdelivr.net/npm/dayjs"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./assets/css/style.css" />
 
     <title>Weather Dashboard</title>
 </head>
 
 <body>
+    <div class="container-fluid">
         <header>
             <h1>5-Day Weather Dashboard</h1>
         </header>
 
         <div class="row">
-            <div class="sidesearch col-md-3">
-                <div id="res-container">
+            <div class="sidesearch col-md-4">
+                <!-- city search sidebar -->
+                <div class="mt-2" id="res-container">
                     <label id="searchTitle" for="cityInput">Search for a City:</label>
-                    <input type="text" placeholder="Detroit" id="cityInput" name="cityInput">
-                    </br>
+                    <input type="text" placeholder="Detroit" id="cityInput" name="cityInput"></br>
                     <button id="searchBtn">Search</button>
                 </div>
-
-
-                <!-- add some preset city buttons-->
-                <div id="presetCities">
-                    <button class="cityNames">Hartford</button></br>
-                    <button class="cityNames">Hackensack</button></br>
-                    <button class="cityNames">Sarnia</button></br>
-                    <button class="cityNames">Blind River</button></br>
-                </div>
+                <div class="lineBreak"></div>
+                <div class="list-group"></div>
+                <div id="presetCities"></div>
             </div>
+                
+            
 
             <!-- city and individual weather data -->
-            <div class="weatherbox col-8">
-                    <div class="row p-2">
+            <div class="weatherbox col-md-8">
+                <div class="row p-2">
                         <div class="card">
                             <div class="card-body">
-                    
-                            <strong class="cityDate">{CITY} {MM/DD/YYYY}</strong>
-                            </br>
-                            <span class="temperature">{X}</span>
-                            </br>
-                            <span class="wind">{WIND VALUE} MPH</span>
-                            </br>
-                            <span class="humidity">{HUMIDITY VALUE} %</span>
-                            </br>
-                            <span class="uvIndex">{UV INDEX}</span>    
+                                <div class="cityDate info">{CITY} {MM/DD/YYYY}</div>
+                                </br>
+                                <span class="temperature info">{X}</span>
+                                </br>
+                                <span class="wind info">{WIND VALUE} MPH</span>
+                                </br>
+                                <span class="humidity info">{HUMIDITY VALUE} %</span>
+                                </br>
+                                <span class="uvIndex info">{UV INDEX VALUE}</span>    
+                            </div>
                         </div>
-                    </div>
-
-                <!-- forecast for 5 days -->
-                <div class="row forecast">
-                    <h2>5-Day Forecast:</h2>    
+                       <!-- forecast for 5 days -->
+                        <div class="row forecast">
+                        <h2>5-Day Forecast:</h2>    
+                        </div>
                 </div>
-            </div>
-            <div class="fiveDayForecast row"></div>
+                <div class="fiveDayForecast row"></div>
 
+                </div>    
             </div>
-        </div>
     </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"> 
-        </script>
+        <script src="https://code.jquery.com/jquery-3.6.4.js" 
+            integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
         <script src="./assets/js/script.js"></script>
 
 </body>

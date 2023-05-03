@@ -1,12 +1,17 @@
 let cityName;
-const apiKey = "8eac768920bc228ecc692f30b2371da9";
-let saveHistory = [];
+let storedCity = JSON.parse(localStorage.getItem("City")) || [];
 
-
+for (let i = 0; i < storedCity.length; i++) {
+    var addCityButtons = document.createElement("button");
+    addCityButtons.setAttribute("class", "cityNames");
+    addCityButtons.textContent = storedCity[i];
+    console.log(storedCity[i]);
+    $("#presetCities").append(addCityButtons);
+    addWeatherEventListener();
+}
 
     let fetchWeather = function (cityName) {
-    //let weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=8eac768920bc228ecc692f30b2371da9";
-        const weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=8eac768920bc228ecc692f30b2371da9";
+    const weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=8eac768920bc228ecc692f30b2371da9";
     fetch(weatherAPI)
         .then(function (response) {
             console.log(weatherAPI);
@@ -75,7 +80,7 @@ presetCityButtons.forEach(function (btn) {
             $(day).append("<p>Humidity: " + data.daily[i].humidity + " %</p>");
             $('fiveDayForecast').append(day)
         };
-    }
+    };
 
     // save to local storage
 
