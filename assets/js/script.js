@@ -11,7 +11,7 @@ for (let i = 0; i < storedCity.length; i++) {
 }
 
     let fetchWeather = function (cityName) {
-    let weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=e87a068abe5c917d5633f3c922dca1d9";
+    let weatherAPI = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=e87a068abe5c917d5633f3c922dca1d9&units=imperial";
     fetch(weatherAPI)
         .then(function (response) {
             //console.log(weatherAPI);
@@ -60,7 +60,7 @@ function addWeatherEventListener() {
             return dayjs(unixTimestamp * 1000).format('M/D/YYYY');
         }
         let getCityInfo = function (lat, lon) {
-            let uvAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + '&lon=' + lon + "&APPID=e87a068abe5c917d5633f3c922dca1d9";
+            let uvAPI = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + '&lon=' + lon + "&APPID=e87a068abe5c917d5633f3c922dca1d9&units=imperial";
             console.log(uvAPI);
             fetch(uvAPI)
                 .then(function (response) {
@@ -90,7 +90,7 @@ function addWeatherEventListener() {
     let fiveDayForecast = function (data) {
         console.log(data.list[0]);
         $('.fiveDayForecast').empty();
-        for (let i = 1; i <= 5; i++) {
+        for (let i = 1; i <= 41; i+=8) {
             var day = $("<div class='day'><div />")
             $(day).append(formatDate(data.list[i].dt));
             $(day).append("<p>Temp: " + data.list[i].main.temp + " °F</p>");
